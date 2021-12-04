@@ -5,8 +5,6 @@ const { v4: uuidv4 } = require("uuid");
 
 const users = [];
 
-// Middleware
-
 function checkExistsUserAccount (request, response, next){
   const { username } = request.headers;
 
@@ -18,7 +16,7 @@ function checkExistsUserAccount (request, response, next){
 
   request.user = user;
   return next();
-}
+};
 function checkTodoExists  (request, response, next){
   const {user} = request;
   const {id} = request.params;
@@ -89,7 +87,7 @@ app.patch("/todos/:id/done",checkExistsUserAccount,checkTodoExists, (request, re
   todo.done = true;
 
   return response.json(todo);
-})
+});
 app.delete("/todos/:id", checkExistsUserAccount, checkTodoExists, (request, response) => {
   const {user,todo} = request;
 
